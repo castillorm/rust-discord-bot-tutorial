@@ -1,7 +1,7 @@
 # 🦀 Rust Discord Bot Tutorial
 
 A hands-on project for building and deploying a Discord bot using Rust.
-This tutorial walks through setup, coding with **Serenity** and **Tokio**, and cloud deployment on **Railway** or **Render** — a perfect intro to async programming and API integration in Rust.
+This tutorial walks through setup, coding with **Serenity** and **Tokio**, inviting the bot to your Discord server, and deploying it on **Railway** or **Render** — a perfect intro to async programming and API integration in Rust.
 
 ---
 
@@ -11,7 +11,7 @@ This tutorial walks through setup, coding with **Serenity** and **Tokio**, and c
 * Built with async Rust using [Serenity](https://github.com/serenity-rs/serenity)
 * Secure environment variable handling with `.env`
 * Deployable to cloud platforms (Railway, Render, or self-hosted)
-* Lightweight, beginner-friendly structure
+* Step-by-step instructions to add your bot to a Discord server
 
 ---
 
@@ -43,7 +43,7 @@ cargo build
 
 ### 3. Add Your Discord Bot Token
 
-Create a `.env` file:
+Create a `.env` file in the root folder:
 
 ```env
 DISCORD_TOKEN=your_bot_token_here
@@ -53,7 +53,44 @@ DISCORD_TOKEN=your_bot_token_here
 
 ---
 
+## 🔗 Add Your Bot to a Discord Server
+
+Once your bot is created in the **Discord Developer Portal**, follow these steps to add it to your own server:
+
+### 1. Generate the Invite (OAuth2) Link
+
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
+2. Select your application (e.g. **RustyBot**)
+3. Go to **OAuth2 → URL Generator**
+4. Under **Scopes**, select:
+
+   * ✅ `bot`
+   * ✅ `applications.commands`
+5. Under **Bot Permissions**, select:
+
+   * ✅ `Read Messages/View Channels`
+   * ✅ `Send Messages`
+   * ✅ `Read Message History`
+   * (Optional) `Use Slash Commands`, `Embed Links`, `Add Reactions`
+6. Copy the generated URL at the bottom — it will look like this:
+
+   ```
+   https://discord.com/oauth2/authorize?client_id=123456789012345678&scope=bot+applications.commands&permissions=3072
+   ```
+
+### 2. Invite the Bot
+
+1. Paste that URL into your browser
+2. Choose the Discord server where you want to install the bot
+3. Click **Continue → Authorize**
+
+Your bot should now appear in the server’s **member list** (usually offline until you run it).
+
+---
+
 ## 💬 Run Locally
+
+Start your bot:
 
 ```bash
 cargo run
@@ -65,7 +102,7 @@ If successful, you’ll see:
 RustyBot#1234 is connected!
 ```
 
-Try it in your Discord server:
+Now go to your Discord server and type:
 
 ```
 !ping
